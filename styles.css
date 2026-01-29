@@ -1,0 +1,80 @@
+body {
+  background: #f4f6fb;
+}
+
+.day-card {
+  min-height: 170px;
+}
+
+.task-item {
+  font-size: 13px;
+}
+
+.task-item.completed span {
+  text-decoration: line-through;
+  color: #198754;
+}
+
+.task-actions i {
+  cursor: pointer;
+}
+
+.month-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #c7d2fe;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.month-dot.active {
+  background: #0d6efd;
+}
+
+.edit-input {
+  font-size: 13px;
+}
+.task-box span {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.task-box.completed span {
+  text-decoration: line-through;
+  color: #16a34a;
+  opacity: 0.8;
+}
+
+.task-box:hover {
+  background: #eef2ff;
+}
+
+.day-card {
+  min-height: 160px;
+}
+
+.task-box:hover {
+  background: #eef2ff;
+}
+
+/* ===== Sticky Month Header ===== */
+nav.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ===== Sticky Weekday Header ===== */
+.calendar-weekdays {
+  position: sticky;
+  top: 56px; /* height of navbar */
+  background: #f4f6fb;
+  z-index: 900;
+  padding-bottom: 4px;
+}
+
+/* Improve calendar scrolling */
+#calendar {
+  padding-top: 8px;
+}
