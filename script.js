@@ -221,18 +221,6 @@ function render() {
     }
   }
 
-  // Auto scroll to today on mobile
-  if (window.innerWidth < 768) {
-    const today = new Date();
-    if (today.getMonth() === currentMonth) {
-      const dayCards = document.querySelectorAll('.day-card');
-      const index = today.getDate() - 1;
-      if (dayCards[index]) {
-        dayCards[index].scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  }
-
   renderMonthDots();
 }
 
