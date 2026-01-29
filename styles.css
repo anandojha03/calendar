@@ -78,3 +78,52 @@ nav.navbar {
 #calendar {
   padding-top: 8px;
 }
+
+/* ===============================
+   Mobile Responsive Calendar
+   =============================== */
+
+/* Mobile view */
+@media (max-width: 768px) {
+
+  /* Remove weekday sticky row on mobile */
+  .calendar-weekdays {
+    display: none;
+  }
+
+  /* Stack days vertically */
+  .row.g-2 {
+    flex-direction: column;
+  }
+
+  /* Each day takes full width */
+  .row.g-2 > .col {
+    width: 100%;
+  }
+
+  /* Improve day card spacing */
+  .day-card {
+    min-height: auto;
+  }
+
+  /* Bigger tap targets */
+  .task-box {
+    padding: 8px !important;
+  }
+
+  .task-box span {
+    font-size: 15px;
+  }
+
+  input.form-control-sm {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* Tablet view */
+@media (min-width: 769px) and (max-width: 991px) {
+  .task-box span {
+    font-size: 14px;
+  }
+}

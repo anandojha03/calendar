@@ -221,8 +221,65 @@ function render() {
     }
   }
 
+  // Auto scroll to today on mobile
+  if (window.innerWidth < 768) {
+    const today = new Date();
+    if (today.getMonth() === currentMonth) {
+      const dayCards = document.querySelectorAll('.day-card');
+      const index = today.getDate() - 1;
+      if (dayCards[index]) {
+        dayCards[index].scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
   renderMonthDots();
 }
 
 /* ---------- INIT ---------- */
 render();
+
+/* ===============================
+   Mobile Swipe Month Navigation
+   =============================== */
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+calendarEl.addEventListener('touchstart', (e) => {
+  if (e.touches.length !== 1) return;
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+calendarEl.addEventListener('touchend', (e) => {
+  if (!touchStartX) return;
+
+  const touchEndX = e.changedTouches[0].clientX;
+  const touchEndY = e.changedTouches[0].clientY;
+
+  const deltaX = touchEndX - touchStartX;
+  const deltaY = touchEndY - touchStartY;
+
+  // Reset
+  touchStartX = 0;
+  touchStartY = 0;
+
+  // Ignore vertical scroll
+  if (Math.abs(deltaY) > Math.abs(deltaX)) return;
+
+  // Minimum swipe distance
+  if (Math.abs(deltaX) < 50) return;
+
+  // Swipe right → previous month
+  if (deltaX > 0 && currentMonth > 0) {
+    currentMonth--;
+    render();
+  }
+
+  // Swipe left → next month
+  if (deltaX < 0 && currentMonth < 11) {
+    currentMonth++;
+    render();
+  }
+});
